@@ -1,5 +1,6 @@
 /* Requête HTTP à l'API pour la page de description */
 
+let quantity = document.getElementById('quantity');
 let imgDescription = document.getElementById('img-des');
 let textDescription = document.getElementById('txt-des');
 let nameDescription = document.getElementById('name');
@@ -19,7 +20,7 @@ function description() {
             nameDescription.innerHTML = response.name;
             price.innerHTML = "prix : " + ((response.price / 100).toFixed(2)).toString().replace(".", ",") + " €";
             for (let i = 0; i < response.colors.length; i++) {
-                dropdown.innerHTML += `<a class="dropdown-item" href="#">${response.colors[i]}</a>`;
+                dropdown.innerHTML += `<option>${response.colors[i]}</option>`;
             }
         }
     };
@@ -41,7 +42,7 @@ carts.addEventListener('click', () => {
 
 function saveItems(productId) {
     
-    let productQuantity = document.getElementById('some_select').value;
+    let productQuantity = document.getElementById('quantity').value;
     let panier = JSON.parse(localStorage.getItem("products")) || [];
     var informationsObjet = {
         "id": productId
@@ -66,6 +67,5 @@ var select = '';
 for (i=1;i<=10;i++){
     select += '<option val=' + i + '>' + i + '</option>';
 }
-$('#some_select').html(select);
-
+ quantity.innerHTML = select;
 onLoadCartNumbers(); 
